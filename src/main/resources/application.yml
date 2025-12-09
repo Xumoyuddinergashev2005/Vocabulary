@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: Vocabulary
+
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5443/vocabulary
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+
+  springdoc:
+    swagger-ui:
+      path: /docs
+
