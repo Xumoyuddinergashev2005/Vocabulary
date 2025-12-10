@@ -2,7 +2,9 @@ package org.example.vocabulary.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -19,6 +21,14 @@ public class Category {
 
     @Column(nullable = false)
     private String name;
+
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @Column(name="delete_at")
+    private LocalDateTime deleteAt;
+
 
     private String description;
 
