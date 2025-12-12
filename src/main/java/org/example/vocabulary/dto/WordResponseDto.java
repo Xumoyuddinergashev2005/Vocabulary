@@ -12,7 +12,7 @@ public record WordResponseDto(
         String wordEn,
         String wordUz,
         String exampleSentence,
-        LocalDateTime  createAt,
+        LocalDateTime  createdAt,
         String audioFile,
         Long categoryId
 

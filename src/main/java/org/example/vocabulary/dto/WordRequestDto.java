@@ -19,7 +19,6 @@ public record WordRequestDto(
         @NotBlank(message = "Cannot be empty")
         String audioFile,
         @NotNull(message = "Cannot be empty")
-        @NotBlank(message = "Cannot be empty")
         Long categoryId
 ) {
 }

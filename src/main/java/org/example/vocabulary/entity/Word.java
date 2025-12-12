@@ -41,7 +41,4 @@ public class Word {
     @Column(name = "delete_at")
     private LocalDateTime deleteAt;
 
-    @OneToMany(mappedBy = "word", cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private List<Lesson> lessons;
 }
