@@ -35,4 +35,12 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Word> words;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<Level> levels;
+
+
+    @Column()
+    private String imageUrl;
 }

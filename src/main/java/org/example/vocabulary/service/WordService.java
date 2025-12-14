@@ -1,11 +1,9 @@
 package org.example.vocabulary.service;
 
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.vocabulary.dto.WordRequestDto;
-import org.example.vocabulary.dto.WordResponseDto;
-import org.example.vocabulary.dto.response.CategoryResponseDto;
+import org.example.vocabulary.dto.request.WordRequestDto;
+import org.example.vocabulary.dto.response.WordResponseDto;
 import org.example.vocabulary.entity.Category;
 import org.example.vocabulary.entity.User;
 import org.example.vocabulary.entity.Word;
@@ -78,8 +76,6 @@ public class WordService {
 
       Category category=categoryRepository.findByIdAndDeleteAtIsNull(id).orElseThrow(()-> new NotFoundException("Not found this category"));
         List<Word> all = wordRepository.findAllByCategoryAndDeleteAtIsNullOrderByCreatedAtDesc(category);
-
-
         return wordMapper.toDto(all);
 
 

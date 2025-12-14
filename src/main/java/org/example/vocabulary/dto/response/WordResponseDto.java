@@ -1,4 +1,4 @@
-package org.example.vocabulary.dto;
+package org.example.vocabulary.dto.response;
 
 
 

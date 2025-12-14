@@ -4,9 +4,8 @@ package org.example.vocabulary.controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.vocabulary.dto.WordRequestDto;
-import org.example.vocabulary.dto.WordResponseDto;
-import org.example.vocabulary.dto.response.CategoryResponseDto;
+import org.example.vocabulary.dto.request.WordRequestDto;
+import org.example.vocabulary.dto.response.WordResponseDto;
 import org.example.vocabulary.dto.response.MessageResponse;
 import org.example.vocabulary.entity.User;
 import org.example.vocabulary.service.WordService;
@@ -56,10 +55,8 @@ public class WordController {
         return ResponseEntity.ok(MessageResponse.success("word updated successfully"));
     }
 
-    @GetMapping("/category/{id}")
-    public ResponseEntity<?> categoryById(@PathVariable Long id){
-        return ResponseEntity.ok(wordService.getByCategoryId(id));
+
 
 
     }
-}
+

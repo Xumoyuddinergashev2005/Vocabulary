@@ -38,7 +38,8 @@ dependencies {
     // Database
     runtimeOnly("org.postgresql:postgresql")
 
-
+    // Cache
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
 
 
 

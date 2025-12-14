@@ -1,15 +1,10 @@
 package org.example.vocabulary.mapper;
 
 
-import io.swagger.v3.oas.annotations.media.Content;
-import org.example.vocabulary.dto.WordRequestDto;
-import org.example.vocabulary.dto.WordResponseDto;
-import org.example.vocabulary.entity.Category;
+import org.example.vocabulary.dto.response.WordResponseDto;
 import org.example.vocabulary.entity.Word;
-import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
