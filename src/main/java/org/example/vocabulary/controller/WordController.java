@@ -4,6 +4,7 @@ package org.example.vocabulary.controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.example.vocabulary.dto.request.WordAddRequestDto;
 import org.example.vocabulary.dto.request.WordRequestDto;
 import org.example.vocabulary.dto.response.WordResponseDto;
 import org.example.vocabulary.dto.response.MessageResponse;
@@ -29,8 +30,6 @@ public class WordController {
 
 
     }
-
-
     @GetMapping("/all")
     public ResponseEntity<?> getAllWords(){
         return ResponseEntity.ok(wordService.getAll());
@@ -53,6 +52,13 @@ public class WordController {
                                     @RequestBody WordResponseDto dto){
         wordService.update(id, dto);
         return ResponseEntity.ok(MessageResponse.success("word updated successfully"));
+    }
+
+    @PostMapping("add/package{id}")
+    public ResponseEntity<?> add(@RequestBody WordAddRequestDto dto,
+                                 @AuthenticationPrincipal User user){
+        wordService.addWord(dto,user);
+        return ResponseEntity.ok(MessageResponse.success("Word added to package successfully"));
     }
 
 

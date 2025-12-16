@@ -2,14 +2,16 @@ package org.example.vocabulary.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.example.vocabulary.dto.request.WordAddRequestDto;
 import org.example.vocabulary.dto.request.WordRequestDto;
 import org.example.vocabulary.dto.response.WordResponseDto;
-import org.example.vocabulary.entity.Category;
-import org.example.vocabulary.entity.User;
-import org.example.vocabulary.entity.Word;
+import org.example.vocabulary.entity.*;
+import org.example.vocabulary.exception.AlreadyExistException;
 import org.example.vocabulary.exception.NotFoundException;
 import org.example.vocabulary.mapper.WordMapper;
 import org.example.vocabulary.repository.CategoryRepository;
+import org.example.vocabulary.repository.PackWordRepository;
+import org.example.vocabulary.repository.PackageRepository;
 import org.example.vocabulary.repository.WordRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +24,20 @@ public class WordService {
     private final WordRepository wordRepository;
     private final CategoryRepository categoryRepository;
     private final WordMapper wordMapper;
+    private final PackageRepository packageRepository;
+    private final PackWordRepository packWordRepository;
+    private final PackWordService packWordService;
 
     public void createWord(WordRequestDto dto, User user) {
         Category category = categoryRepository.findByIdAndDeleteAtIsNull(dto.categoryId()).orElseThrow(() -> new NotFoundException("This category is not exist"));
+
+        if (wordRepository.existsByWordEn(dto.wordEn()) ){
+            throw new AlreadyExistException("Word with wordEnglish name " + dto.wordEn() + " already exist");
+        }
+        if (wordRepository.existsByWordUz(dto.wordUz() )){
+            throw new AlreadyExistException("Word with wordUzbek name " + dto.wordUz() + " already exist");
+        }
+
 
         Word word = Word.builder()
                 .wordEn(dto.wordEn())
@@ -80,6 +93,24 @@ public class WordService {
 
 
 
+    }
+
+    public void addWord(WordAddRequestDto dto, User user) {
+        Word word = wordRepository.findByIdAndDeleteAtIsNull(dto.wordId()).orElseThrow(
+                ()-> new NotFoundException("Word not found "+dto.wordId()+"this id")
+        );
+        MyPackage myPackage = packageRepository.findByIdAndDeleteAtIsNull(dto.packId())
+                .orElseThrow(() -> new NotFoundException("Package not found with:" + dto.packId()));
+
+       packWordRepository.findByWordIdAndDeleteAtIsNull(dto.wordId())
+                .orElseThrow(() -> new AlreadyExistException("this word already exist in this :" + dto.packId()));
+
+        PackWord packWord=PackWord.builder()
+                .packId(dto.packId())
+                .wordId(dto.wordId())
+                .build();
+
+        packWordRepository.save(packWord);
     }
 }
 

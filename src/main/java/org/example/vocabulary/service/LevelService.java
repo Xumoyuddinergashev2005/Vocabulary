@@ -2,13 +2,12 @@ package org.example.vocabulary.service;
 
 
 import lombok.RequiredArgsConstructor;
-import org.example.vocabulary.dto.LevelRequestDto;
+import org.example.vocabulary.dto.request.LevelRequestDto;
 import org.example.vocabulary.dto.LevelResponseDto;
-import org.example.vocabulary.dto.request.CategoryRequestDto;
-import org.example.vocabulary.dto.response.CategoryResponseDto;
 import org.example.vocabulary.entity.Category;
 import org.example.vocabulary.entity.Level;
 import org.example.vocabulary.entity.User;
+import org.example.vocabulary.exception.AlreadyExistException;
 import org.example.vocabulary.exception.NotFoundException;
 import org.example.vocabulary.mapper.LevelMapper;
 import org.example.vocabulary.repository.CategoryRepository;
@@ -26,6 +25,11 @@ public class LevelService {
     private final CategoryRepository categoryRepository;
 
     public void create(LevelRequestDto dto, User user) {
+
+        if (levelRepository.existsByName(dto.name())) {
+            throw new AlreadyExistException("Level with name " + dto.name() + " already exist in this category");
+        }
+
         Category category = categoryRepository.findByIdAndDeleteAtIsNull(dto.categoryId()).orElseThrow(() -> new NotFoundException("This category is not exist"));
         Level level = Level.builder()
                 .name(dto.name())

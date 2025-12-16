@@ -18,5 +18,7 @@ public interface WordRepository extends JpaRepository<Word, Long> {
     List<Word> findAllByCategoryIdAndDeleteAtIsNull(Long categoryId);
 
 
+    boolean existsByWordEn(String wordEn);
 
+    boolean existsByWordUz(String wordUz);
 }

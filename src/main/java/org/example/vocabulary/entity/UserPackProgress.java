@@ -22,7 +22,7 @@ public class UserPackProgress {
     private Long userId;
 
     @ManyToOne(optional = false)
-    private Package pack;
+    private MyPackage pack;
 
     private Long currentStage; // 1..4
     private Boolean completed;

@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface LevelMapper {
 
-
+    @Mapping(target = "categoryId", source = "category.id")
     LevelResponseDto toDto(Level level);
 
     List<LevelResponseDto> toDto(List<Level> level);

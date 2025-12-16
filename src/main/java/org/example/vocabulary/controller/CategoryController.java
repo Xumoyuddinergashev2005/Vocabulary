@@ -68,8 +68,10 @@ public class CategoryController {
 
     }
 
-    /*@GetMapping("/category/{categoryId}/levels")
-    public ResponseEntity<?> getAllByCategoryId(@PathVariable String categoryId){
+    @GetMapping("/category/{categoryId}/levels")
+    public ResponseEntity<?> getAllByCategoryId(@PathVariable Long categoryId){
 
-    }*/
+        return ResponseEntity.ok( categoryService.getAllLevels(categoryId));
+
+    }
 }

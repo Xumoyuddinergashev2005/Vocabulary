@@ -1,14 +1,14 @@
 package org.example.vocabulary.dto.request;
 
-import jakarta.validation.constraints.Email;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
 @Builder
-public record UserLoginDto(
-        @Email(message = "Invalid format")
-        String email,
+public record PackagesByCategoryIdAndLevelIdRequestDto(
         @NotNull(message = "Cannot be null")
-        String password
+        Long categoryId,
+        @NotNull(message = "Cannot be null")
+        Long levelId
 ) {
 }

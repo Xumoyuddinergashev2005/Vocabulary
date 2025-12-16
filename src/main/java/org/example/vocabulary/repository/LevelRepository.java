@@ -14,4 +14,9 @@ public interface LevelRepository extends JpaRepository<Level, Long> {
     List<Level> findAllByDeleteAtIsNullOrderByCreatedAtDesc();
 
     Optional<Level> findByIdAndDeleteAtIsNull(Long id);
+
+    boolean existsByName(String name);
+
+    boolean existsByIdAndCategoryId(Long levelId, Long categoryId);
 }
+

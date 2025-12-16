@@ -18,7 +18,7 @@ public class UserStageAttempt {
     private Long userId;
 
     @ManyToOne
-    private Package pack;
+    private MyPackage pack;
 
     private Long stage; // 2,3,4
 

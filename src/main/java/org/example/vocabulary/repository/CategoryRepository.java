@@ -16,6 +16,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long > {
    Optional<Category> findByIdAndDeleteAtIsNull(Long id);
 
 
-
-
+   boolean existsByName(String name);
 }

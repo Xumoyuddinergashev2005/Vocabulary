@@ -18,7 +18,7 @@ public class UserWordResult {
     private Long userId;
 
     @ManyToOne(fetch =FetchType.LAZY)
-    private Package pack;
+    private MyPackage pack;
 
     @ManyToOne
     private Word word;
